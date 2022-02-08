@@ -4,7 +4,6 @@ import { findWeaknesses, findStrengths } from '../components/typeChartFunctions'
 import Footer from '../components/Footer';
 
 function Team(props) {
-
    const [pokeData, setPokeData] = useState([]);
    const [updating, setUpdating] = useState(true);
    const [typeCount, setTypeCount] = useState({});
@@ -17,7 +16,6 @@ function Team(props) {
       let myTeam = [];
       if (props.team) {
          for (let i = 0; i < props.team.length; i++) {
-
             let pokemonData = localStorage.getItem(`${props.team[i]}Data`);
             let pokemonObject = JSON.parse(pokemonData);
    
@@ -57,8 +55,7 @@ function Team(props) {
    }
 
    function setStats() {
-
-      // Resetting so the stats display correctly when a pokemon is removed
+      //  Resetting so the stats display correctly when a pokemon is removed  //
       setTeamStats({'hp': 0, 'attack': 0, 'defense': 0, 'special-attack': 0, 'special-defense': 0, 'speed': 0});
 
       pokeData.forEach((teamMember) => {
@@ -156,7 +153,6 @@ function Team(props) {
 
 
    if (updating) {
-
       return (
          <div className="container">
             <h2 className="loading">Loading...</h2>
@@ -164,7 +160,6 @@ function Team(props) {
       );
 
    } else if (props.team.length <= 0) {
-
       return (
          <>
             <div className="team-page">
@@ -208,7 +203,6 @@ function Team(props) {
       );
 
    } else {
-
       let teamDisplay = pokeData.map((item, index) => {
          const pokeType = item.types.map((slot) => {
             let typeColor = getTypeColor(slot.type.name);

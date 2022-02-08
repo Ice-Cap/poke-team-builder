@@ -9,27 +9,9 @@ function TeamBar(props) {
    const [clickedSprite, setClickedSprite] = useState();
    const [pokemon, setPokemon] = useState();
 
-   // const sprites = props.team.map((pokemon) => {
-   //    if (!localStorage.getItem(`${pokemon}Data`)) {
-   //      const data = getPokemon(pokemon);
-   //      return {
-   //         sprite: data.sprites['front_default'],
-   //         name: data.name
-   //       };
-   //    } else {
-   //       const pokemonData = localStorage.getItem(`${pokemon}Data`);
-   //       const pokemonObject = JSON.parse(pokemonData);
-   //       return {
-   //          sprite: pokemonObject.sprites['front_default'],
-   //          name: pokemonObject.name
-   //       };
-   //    }
-
-   // });
-
    let sprites = props.team.map((pokemon, index) => {
       if (!localStorage.getItem(`${pokemon}Data`)) {
-         console.log('TEAM BAR:  Wasnt stored');
+         console.log("TEAM BAR:  Wasn't stored");
          getPokemon(pokemon).then((data) => {
             return (
                <li key={data.name += index} onClick={openPopup}>
@@ -38,7 +20,6 @@ function TeamBar(props) {
             );
          });
       } else {
-         
          const pokemonData = localStorage.getItem(`${pokemon}Data`);
          const pokemonObject = JSON.parse(pokemonData);
          return (
@@ -70,10 +51,7 @@ function TeamBar(props) {
    function remove() {
       closePopup();
       props.removePokemon(pokemon);
-
-      // sprites = sprites.filter((member) => member !== pokemon);
    }
-
 
    return (
       <div id="team-bar">
