@@ -2,12 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { formatText } from './helperFunctions';
 import { Link } from 'react-router-dom';
 
-
-
 function SearchBar() {
    const [pokemon, setPokemon] = useState([]);
    const [userSearch, setUserSearch] = useState();
    const [suggestions, setSuggestions] = useState(pokemon);
+   const listIsOpen = suggestions.length > 0;
+
+   if (listIsOpen) {
+      window.addEventListener('click', () => {
+         setSuggestions([]);
+         setUserSearch('');
+      });
+   }
 
    function handleChange(e) {
       setUserSearch(e.target.value.toLowerCase());
@@ -37,18 +43,6 @@ function SearchBar() {
       }
    }, []);
 
-   useEffect(() => {
-      const list = document.getElementById('search-list');
-      const input = document.getElementById('search-input');
-      window.addEventListener('click', (e) => {
-         if (e.target === input) {
-            list.style.display = 'block';
-         } else {
-            list.style.display = 'none';
-         }
-      });
-   }, []);
-
    const searchList = suggestions.map((item) => {
       let formattedItem = formatText(item.name);
       
@@ -62,9 +56,10 @@ function SearchBar() {
             autoComplete="off"
             onChange={handleChange} 
             placeholder='Search' 
-            type='text'>
+            type='text'
+            value={userSearch}>
          </input>
-         <ul id="search-list">{searchList}</ul>
+         {listIsOpen && <ul id="search-list">{searchList}</ul>}
       </div>
    );
 }

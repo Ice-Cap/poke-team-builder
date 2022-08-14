@@ -97,7 +97,6 @@ nav a:last-child {
    top: 40px;
    background-color: rgb(44, 44, 44);
    color: #fff;
-   overflow: scroll;
    border-radius: 5px;
    box-shadow: 1px 3px 8px rgba(0, 0, 0);
    font-size: 1em;
